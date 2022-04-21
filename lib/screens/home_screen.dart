@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api_with_bloc/bloc_state/universities_state.dart';
 import 'package:flutter_api_with_bloc/bloc_state/universities_block.dart';
 import 'package:flutter_api_with_bloc/bloc_state/universities_events.dart';
+import 'package:flutter_api_with_bloc/bloc_state/universities_state.dart';
 import 'package:flutter_api_with_bloc/model/universities_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,7 +36,7 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Flutter Universities"),
+        title: const Text("Search Universities"),
       ),
       body: Column(
         children: [
@@ -120,7 +120,6 @@ class HomeScreenState extends State<HomeScreen> {
   ListView universitiesList(List<UniversitiesModel> universities) {
     return ListView.builder(
       itemCount: universities.length,
-
       itemBuilder: (_, index) {
         UniversitiesModel universitiesObject = universities[index];
         return Container(
@@ -130,7 +129,7 @@ class HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListTile(
-                onTap:() {
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -157,10 +156,10 @@ class HomeScreenState extends State<HomeScreen> {
                   height: 50,
                   width: 50,
                   decoration: BoxDecoration(
-                      color: Colors.orange,
-                      shape: BoxShape.circle
+                      color: Colors.orange, shape: BoxShape.circle),
+                  child: Center(
+                    child: Text(universitiesObject.name![0]),
                   ),
-                  child: Center(child: Text(universitiesObject.name![0]),),
                 ),
               ),
               Divider(
@@ -185,7 +184,7 @@ class HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListTile(
-                onTap:() {
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -212,10 +211,10 @@ class HomeScreenState extends State<HomeScreen> {
                   height: 50,
                   width: 50,
                   decoration: BoxDecoration(
-                      color: Colors.orange,
-                      shape: BoxShape.circle
+                      color: Colors.orange, shape: BoxShape.circle),
+                  child: Center(
+                    child: Text(universitiesObject.name![0]),
                   ),
-                  child: Center(child: Text(universitiesObject.name![0]),),
                 ),
               ),
               Divider(
