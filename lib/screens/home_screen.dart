@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api_with_bloc/bloc_state/universities_block.dart';
+import 'package:flutter_api_with_bloc/bloc_state/blocs.dart';
 import 'package:flutter_api_with_bloc/bloc_state/universities_events.dart';
 import 'package:flutter_api_with_bloc/bloc_state/universities_state.dart';
-import 'package:flutter_api_with_bloc/model/universities_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:flutter_api_with_bloc/model/universities_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'domain_web_view.dart';
 
@@ -122,6 +124,19 @@ class HomeScreenState extends State<HomeScreen> {
       itemCount: universities.length,
       itemBuilder: (_, index) {
         UniversitiesModel universitiesObject = universities[index];
+
+        final _url = universitiesObject.webPages![0] != null
+            ? universitiesObject.webPages![0]
+            : "NO URL";
+
+        void _launchURL() async {
+          if (await canLaunch(_url!)) {
+            await launch(_url);
+          } else {
+            throw 'Could not launch $_url';
+          }
+        }
+
         return Container(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -130,13 +145,7 @@ class HomeScreenState extends State<HomeScreen> {
             children: [
               ListTile(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          DomainWebView(link: universitiesObject.webPages![0]),
-                    ),
-                  );
+                  _launchURL();
                 },
                 title: Text(
                   universitiesObject.name!,

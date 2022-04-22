@@ -8,17 +8,26 @@ abstract class ServiceApi {
 }
 
 class UniversitiesService extends ServiceApi {
+  // URL to connect to server.
   String baseUrl = "http://universities.hipolabs.com";
+
   @override
   Future<List<UniversitiesModel>> getUniversities() async {
     try {
+      // Fetching data from server.
       var uri = Uri.parse("$baseUrl/search?country=Jordan");
+
+      // Creating http client.
       var response =
           await http.get(uri, headers: {"ContentType": "application/json"});
+
+      // Creating list of universities data.
       var universitiesList = universitiesFromJson(response.body);
 
+      // Returning list of universities data.
       return universitiesList;
     } catch (e) {
+      // Returning error message.
       return List<UniversitiesModel>.empty();
     }
   }

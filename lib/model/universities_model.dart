@@ -1,9 +1,12 @@
 import 'dart:convert';
 
 //I can parse json data with Model classes. We will pass the json string to json.decode() method then from the model class we will parse it.
-List<UniversitiesModel> universitiesFromJson(String str) => List<UniversitiesModel>.from(json.decode(str).map((x) => UniversitiesModel.fromJson(x)));
+List<UniversitiesModel> universitiesFromJson(String str) =>
+    List<UniversitiesModel>.from(
+        json.decode(str).map((x) => UniversitiesModel.fromJson(x)));
 
-String universitiesToJson(List<UniversitiesModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String universitiesToJson(List<UniversitiesModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class UniversitiesModel {
 /*
@@ -21,7 +24,6 @@ class UniversitiesModel {
 }
 */
 
-
   String? country;
   String? name;
   List<String?>? domains;
@@ -30,21 +32,23 @@ class UniversitiesModel {
   List<String?>? webPages;
   String? error;
 
-  UniversitiesModel({
-    this.country,
-    this.name,
-    this.domains,
-    this.alphaTwoCode,
-    this.stateProvince,
-    this.webPages,
-    this.error
-  });
+  UniversitiesModel(
+      {this.country,
+      this.name,
+      this.domains,
+      this.alphaTwoCode,
+      this.stateProvince,
+      this.webPages,
+      this.error});
+
   UniversitiesModel.withError(String errorMessage) {
     error = errorMessage;
   }
+
   UniversitiesModel.fromJson(Map<String, dynamic> json) {
     country = json['country']?.toString();
     name = json['name']?.toString();
+
     if (json['domains'] != null) {
       final v = json['domains'];
       final arr0 = <String>[];
@@ -53,8 +57,10 @@ class UniversitiesModel {
       });
       domains = arr0;
     }
+
     alphaTwoCode = json['alpha_two_code']?.toString();
     stateProvince = json['state-province']?.toString();
+
     if (json['web_pages'] != null) {
       final v = json['web_pages'];
       final arr0 = <String>[];
@@ -64,6 +70,7 @@ class UniversitiesModel {
       webPages = arr0;
     }
   }
+
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['country'] = country;

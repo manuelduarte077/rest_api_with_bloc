@@ -1,10 +1,11 @@
 import 'dart:io';
 
-import 'universities_state.dart';
 import 'package:flutter_api_with_bloc/bloc_state/universities_events.dart';
 import 'package:flutter_api_with_bloc/model/universities_model.dart';
 import 'package:flutter_api_with_bloc/repositories/universities_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'universities_state.dart';
 
 //Every bloc will contains three class bloc, state and event.
 class UniversitiesBloc extends Bloc<UniversitiesEvents, UniversitiesState> {

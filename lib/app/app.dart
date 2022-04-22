@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_api_with_bloc/bloc_state/universities_block.dart';
 import 'package:flutter_api_with_bloc/repositories/universities_repository.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../screens/home_screen.dart';
 
@@ -18,6 +19,7 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     //To Communicate UI with Service layer
     return MaterialApp(
+      // To Communicate UI with Service layer and Bloc layer (Bloc is a state management pattern)
       home: BlocProvider(
         create: (context) => UniversitiesBloc(
           universitiesRepository: UniversitiesRepository(),
